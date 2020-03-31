@@ -18,7 +18,7 @@ namespace VeritabanliPartiSecimGrafikIstatislik
             InitializeComponent();
         }
 
-        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-427L4HT;Initial Catalog=DbSecimProje;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=DbSecimProje;Integrated Security=True");
         private void btnOyGrisi_Click(object sender, EventArgs e)
         {
             con.Open();

@@ -18,7 +18,7 @@ namespace VeritabanliPartiSecimGrafikIstatislik
             InitializeComponent();
         }
 
-        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-427L4HT;Initial Catalog=DbSecimProje;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=DbSecimProje;Integrated Security=True");
         private void frmGrafikler_Load(object sender, EventArgs e)
         {
             con.Open();
@@ -48,28 +48,28 @@ namespace VeritabanliPartiSecimGrafikIstatislik
         private void cboIlce_SelectedIndexChanged(object sender, EventArgs e)
         {
             con.Open();
-            SqlCommand cmd = new SqlCommand("select * from tblIlce where IlceAd=@p1",con);
+            SqlCommand cmd = new SqlCommand("select AParti,BParti,CParti,DParti,EParti from tblIlce where IlceAd=@p1", con);
             cmd.Parameters.AddWithValue("@p1", cboIlce.Text);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                progressBar1.Value = Convert.ToInt32(dr[2].ToString());
-                progressBar2.Value = Convert.ToInt32(dr[3].ToString());
-                progressBar3.Value = Convert.ToInt32(dr[4].ToString());
-                progressBar4.Value = Convert.ToInt32(dr[5].ToString());
-                progressBar5.Value = Convert.ToInt32(dr[6].ToString());
+                progressBar1.Value = Convert.ToInt32(dr[0].ToString());
+                progressBar2.Value = Convert.ToInt32(dr[1].ToString());
+                progressBar3.Value = Convert.ToInt32(dr[2].ToString());
+                progressBar4.Value = Convert.ToInt32(dr[3].ToString());
+                progressBar5.Value = Convert.ToInt32(dr[4].ToString());
                 chart1.Series["Partiler"].Points.Clear(); 
-                chart1.Series["Partiler"].Points.AddXY("A PARTİ", dr[2]);
-                chart1.Series["Partiler"].Points.AddXY("B PARTİ", dr[3]);
-                chart1.Series["Partiler"].Points.AddXY("C PARTİ", dr[4]);
-                chart1.Series["Partiler"].Points.AddXY("D PARTİ", dr[5]);
-                chart1.Series["Partiler"].Points.AddXY("E PARTİ", dr[6]);
+                chart1.Series["Partiler"].Points.AddXY("A PARTİ", dr[0]);
+                chart1.Series["Partiler"].Points.AddXY("B PARTİ", dr[1]);
+                chart1.Series["Partiler"].Points.AddXY("C PARTİ", dr[2]);
+                chart1.Series["Partiler"].Points.AddXY("D PARTİ", dr[3]);
+                chart1.Series["Partiler"].Points.AddXY("E PARTİ", dr[4]);
 
-                lblA.Text = dr[2].ToString();
-                lblB.Text = dr[3].ToString();
-                lblC.Text = dr[4].ToString();
-                lblD.Text = dr[5].ToString();
-                lblE.Text = dr[6].ToString();
+                lblA.Text = dr[0].ToString();
+                lblB.Text = dr[1].ToString();
+                lblC.Text = dr[2].ToString();
+                lblD.Text = dr[3].ToString();
+                lblE.Text = dr[4].ToString();
             }
             con.Close();
         }
